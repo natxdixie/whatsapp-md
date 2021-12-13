@@ -9,6 +9,7 @@ const { fromBuffer } = require('file-type')
 const path = require('path')
 const os = require('os')
 const speed = require('performance-now')
+const { Tiktokdl } = require('./lib/tiktokdl')
 const { performance } = require('perf_hooks')
 const { smsg, getGroupAdmins, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, runtime, fetchJson, getBuffer, jsonformat, delay, format, logic, generateProfilePicture, parseMention, getRandom } = require('./lib/myfunc')
 
@@ -262,21 +263,22 @@ Kecepatan Respon ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\
               m.reply(respon)
             }
             break
+          case 'tiktok': case 'tiktokdl': case 'tt': {
+          if (!text) throw 'Masukkan Link!'
+          m.reply(mess.wait)
+          anu = await Tiktokdl(text)
+          frnky.sendMessage(m.chat, { video: { url: anu.result.nowatermark }, caption: `Nih`}, { quoted: m })
+          }
+          break
        // Menu
            case 'menu': case 'help': {
-                Textmenu = `Halo ${pushname}👋
+                Textmenu = `Halo *${pushname}* 👋
                 
 *Tanggal:* -
 *Waktu:* -
  
 *Download Menu*
-*${prefix}play*
-*${prefix}ytdl*
-*${prefix}igdl*
-*${prefix}ytmp4*
-*${prefix}ytmp3*
 *${prefix}tiktok*
-*${prefix}mediafire*
 
 *Owner Menu*
 *=>*
@@ -302,7 +304,7 @@ Kecepatan Respon ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\
                         }
                     }
                 }), { userJid: m.chat, quoted: m })
-                frnky.relayMessage(m.chat, template.message, { messageId: template.key.id })
+                frnky.relayMessage(m.chat, template.message, { messageId: template.key.id } , { quoted: m })
             }
             break
 case 'eval': {
