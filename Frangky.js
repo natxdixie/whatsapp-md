@@ -267,8 +267,7 @@ Kecepatan Respon ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\
           if (!text) throw 'Masukkan Link!'
           m.reply(mess.wait)
           anu = await Tiktokdl(text)
-          console.log(anu)
-          frnky.sendMessage(m.chat, { video: { url: anu.result.nowatermark }, caption: `Nih`}, { quoted: m })
+          frnky.sendMessage(m.chat, { video: { url: anu.nowatermark }, caption: `Nih`}, { quoted: m })
           }
           break
        // Menu
