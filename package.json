@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node index.js"
   },
-  "author": "Dika Ardnt.",
+  "author": "Frangky.",
   "license": "MIT",
   "dependencies": {
     "@adiwajshing/baileys-md": "github:adiwajshing/baileys#multi-device",
@@ -35,3 +35,4 @@
     "yargs": "^17.2.1",
     "yt-search": "^2.10.2"
   }
+}
