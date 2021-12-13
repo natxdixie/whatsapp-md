@@ -9,6 +9,7 @@ const { fromBuffer } = require('file-type')
 const path = require('path')
 const os = require('os')
 const speed = require('performance-now')
+const UploadFile = require('./lib/upload')
 const { Tiktokdl } = require('./lib/tiktokdl')
 const { performance } = require('perf_hooks')
 const { smsg, getGroupAdmins, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, runtime, fetchJson, getBuffer, jsonformat, delay, format, logic, generateProfilePicture, parseMention, getRandom } = require('./lib/myfunc')
@@ -29,14 +30,14 @@ module.exports = frnky = async (frnky, m, chatUpdate) => {
         const text = q = args.join(" ")
         const quoted = m.quoted ? m.quoted : m
         const mime = (quoted.msg || quoted).mimetype || ''
-	    const isMedia = /image|video|sticker|audio/.test(mime)
+	const isMedia = /image|video|sticker|audio/.test(mime)
 	
         // Group
         const groupMetadata = m.isGroup ? await frnky.groupMetadata(m.chat).catch(e => {}) : ''
         const groupName = m.isGroup ? groupMetadata.subject : ''
         const participants = m.isGroup ? await groupMetadata.participants : ''
         const groupAdmins = m.isGroup ? await getGroupAdmins(participants) : ''
-	    const isBotAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
+	const isBotAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
         const isGroupAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
 
         // Status
@@ -242,14 +243,8 @@ module.exports = frnky = async (frnky, m, chatUpdate) => {
 	        case 'tourl': {
                 m.reply(mess.wait)
                 let media = await frnky.downloadAndSaveMediaMessage(quoted)
-                if (/image/.test(mime)) {
-                    let anu = await TelegraPh(media)
-                    m.reply(util.format(anu))
-                } else if (!/image/.test(mime)) {
-                    let anu = await UploadFileUgu(media)
-                    m.reply(util.format(anu))
-                }
-                await fs.unlinkSync(media)
+                anu = await UploadFile(media)
+                m.reply(anu)
             }
             break
             
