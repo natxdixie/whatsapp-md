@@ -264,7 +264,7 @@ Kecepatan Respon ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\
             break
        // Menu
            case 'menu': case 'help': {
-                Textmenu = `Halo @${sender.split('@')[0]} 👋
+                Textmenu = `Halo ${pushname}👋
                 
 *Tanggal:* -
 *Waktu:* -
