@@ -10,6 +10,7 @@ const path = require('path')
 const os = require('os')
 const yts = require('yt-search')
 const speed = require('performance-now')
+const { igDL } = require('./lib/igdl')
 const { ytMp4 , ytMp3 } = require('./lib/ytdl')
 const { Tiktokdl } = require('./lib/tiktokdl')
 const { performance } = require('perf_hooks')
@@ -280,6 +281,13 @@ Kecepatan Respon ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\
           frnky.sendMessage(m.chat, { video: { url: anu.nowatermark }, caption: 'Nih'}, { quoted: m })
           }
           break
+          case 'instagram': case 'igdl': case 'ig': {
+          if (!text) throw 'Masukkan Link Instagram!'
+          m.reply(mess.wait)
+          anu = await igDL(text)
+          frnky.sendMessage(m.chat, { video: { url: anu.result.link }, caption: 'Nih'}, { quoted: m })
+          }
+          break
        // Menu
            case 'menu': case 'help': {
                 Textmenu = `Halo *${pushname}* 👋
@@ -289,6 +297,7 @@ Kecepatan Respon ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\
  
 *Download Menu*
 *${prefix}tiktok* <link tiktok>
+*${prefix}igdl* <link instagram>
 *${prefix}play* <judul>
 *${prefix}ytmp3* <link youtube>
 *${prefix}ytmp4* <link youtube>
