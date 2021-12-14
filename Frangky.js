@@ -221,7 +221,7 @@ module.exports = frnky = async (frnky, m, chatUpdate) => {
                 }
             }
             break
-            case 'delete': case 'del': {
+            case 'delete': case 'del': case 'd': {
                 if (!m.quoted) throw false
                 let { chat, fromMe, id, isBaileys } = m.quoted
                 frnky.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
@@ -340,6 +340,18 @@ Kecepatan Respon ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\
 *${prefix}play* <judul>
 *${prefix}ytmp3* <link youtube>
 *${prefix}ytmp4* <link youtube>
+
+*Group Menu*
+*${prefix}group* <open/close>
+*${prefix}ephemeral* <enable/disable>
+*${prefix}chat* <option>
+*${prefix}linkgc*
+*${prefix}setname*
+*${prefix}promote* @628xxx
+*${prefix}demote* @628xx
+
+*Tools Menu*
+*${prefix}delete* <reply pesan>
 
 *Owner Menu*
 *=>*
