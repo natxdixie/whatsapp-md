@@ -9,7 +9,7 @@ const { fromBuffer } = require('file-type')
 const path = require('path')
 const os = require('os')
 const speed = require('performance-now')
-const UploadFile = require('./lib/upload')
+const { ytPlay , ytMp3 } = require('./lib/ytdl')
 const { Tiktokdl } = require('./lib/tiktokdl')
 const { performance } = require('perf_hooks')
 const { smsg, getGroupAdmins, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, runtime, fetchJson, getBuffer, jsonformat, delay, format, logic, generateProfilePicture, parseMention, getRandom } = require('./lib/myfunc')
@@ -273,7 +273,9 @@ Kecepatan Respon ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\
 *Waktu:* -
  
 *Download Menu*
-*${prefix}tiktok*
+*${prefix}tiktok* <link tiktok>
+*${prefix}play* <judul>
+*${prefix}ytmp3* <link youtube>
 
 *Owner Menu*
 *=>*
