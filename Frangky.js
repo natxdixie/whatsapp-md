@@ -265,11 +265,18 @@ Kecepatan Respon ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\
           frnky.sendMessage(m.chat, { audio: { url: anu.dl_link }, { quoted: m })
           }
           break
+          case 'ytmp4': {
+          if (!text) throw 'Masukkan Link Youtube!'
+          m.reply(mess.wait)
+          anu = await ytMp3(text)
+          frnky.sendMessage(m.chat, { video: { url: anu.dl_link } , caption:'Nih', { quoted: m })
+          }
+          break
           case 'tiktok': case 'tiktokdl': case 'tt': {
           if (!text) throw 'Masukkan Link Tiktok!'
           m.reply(mess.wait)
           anu = await Tiktokdl(text)
-          frnky.sendMessage(m.chat, { video: { url: anu.nowatermark }, caption: `Nih`}, { quoted: m })
+          frnky.sendMessage(m.chat, { video: { url: anu.nowatermark }, caption: 'Nih'}, { quoted: m })
           }
           break
        // Menu
@@ -283,6 +290,7 @@ Kecepatan Respon ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\
 *${prefix}tiktok* <link tiktok>
 *${prefix}play* <judul>
 *${prefix}ytmp3* <link youtube>
+*${prefix}ytmp4* <link youtube>
 
 *Owner Menu*
 *=>*
