@@ -262,7 +262,7 @@ Kecepatan Respon ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\
           if (!text) throw 'Masukkan Link Youtube!'
           m.reply(mess.wait)
           anu = await ytMp3(text)
-          frnky.sendMessage(m.chat, { audio: { url: anu.dl_link }, { quoted: m })
+          frnky.sendMessage(m.chat, { audio: { url: anu.dl_link }}, { quoted: m })
           }
           break
           case 'ytmp4': {
