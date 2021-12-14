@@ -1,9 +1,50 @@
 require('./config')
-const { default: makeWASocket, BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, downloadContentFromMessage, downloadHistory, proto, getMessage, generateWAMessageContent, prepareWAMessageMedia } = require('@adiwajshing/baileys-md')
+// Baileys Multi Device
+const { 
+ default: makeWASocket, 
+ BufferJSON, 
+ WA_DEFAULT_EPHEMERAL, 
+ generateWAMessageFromContent, 
+ downloadContentFromMessage, 
+ downloadHistory, 
+ proto, 
+ getMessage, 
+ generateWAMessageContent, 
+ prepareWAMessageMedia 
+} = require('@adiwajshing/baileys-md')
+const { 
+ smsg, 
+ getGroupAdmins, 
+ formatp, 
+ tanggal, formatDate, 
+ getTime, 
+ isUrl, 
+ sleep, 
+ clockString, 
+ runtime, 
+ fetchJson, 
+ getBuffer, 
+ jsonformat, 
+ delay, 
+ format, 
+ logic, 
+ generateProfilePicture, 
+ parseMention, 
+ getRandom 
+ } = require('./lib/myfunc')
+// Dl YouTube
+const { 
+ ytMp4 , 
+ ytMp3 
+} = require('./lib/ytdl')
+const { 
+ exec, 
+ spawn, 
+ execSync 
+} = require("child_process")
 const fs = require('fs')
 const util = require('util')
 const chalk = require('chalk')
-const { exec, spawn, execSync } = require("child_process")
 const axios = require('axios')
 const { fromBuffer } = require('file-type')
 const path = require('path')
@@ -11,10 +52,8 @@ const os = require('os')
 const yts = require('yt-search')
 const speed = require('performance-now')
 const { igDL } = require('./lib/igdl')
-const { ytMp4 , ytMp3 } = require('./lib/ytdl')
 const { Tiktokdl } = require('./lib/tiktokdl')
 const { performance } = require('perf_hooks')
-const { smsg, getGroupAdmins, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, runtime, fetchJson, getBuffer, jsonformat, delay, format, logic, generateProfilePicture, parseMention, getRandom } = require('./lib/myfunc')
 
 module.exports = frnky = async (frnky, m, chatUpdate) => {
     try {
