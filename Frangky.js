@@ -258,8 +258,16 @@ Kecepatan Respon ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\
               m.reply(respon)
             }
             break
+           case 'ytmp3': {
+          if (!text) throw 'Masukkan Link Youtube!'
+          m.reply(mess.wait)
+          anu = await ytMp3(text)
+          m.reply(anu)
+          //////////////////////////frnky.sendMessage(m.chat, { audio: { url: anu.result }, { quoted: m })
+          }
+          break
           case 'tiktok': case 'tiktokdl': case 'tt': {
-          if (!text) throw 'Masukkan Link!'
+          if (!text) throw 'Masukkan Link Tiktok!'
           m.reply(mess.wait)
           anu = await Tiktokdl(text)
           frnky.sendMessage(m.chat, { video: { url: anu.nowatermark }, caption: `Nih`}, { quoted: m })
