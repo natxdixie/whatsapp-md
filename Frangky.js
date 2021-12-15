@@ -328,7 +328,8 @@ Kecepatan Respon ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\
           }
           break
         case 'play': case 'ytdl': {
-if(!text) throw 'Masukkan Judul!'
+if(!text) throw 'Masukkan Link/Judul!'
+m.reply(mess.wait)
 pl = await yts(text)
 result = pl.all[0]
 play_msg = `*Playing Music From Youtube*
