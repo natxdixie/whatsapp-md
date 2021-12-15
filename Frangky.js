@@ -327,6 +327,38 @@ Kecepatan Respon ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\
           frnky.sendMessage(m.chat, { video: { url: anu.result.link }, caption: 'Nih'}, { quoted: m })
           }
           break
+        case 'play': case 'ytdl': {
+if(!text) throw 'Masukkan Judul!'
+pl = await yts(text)
+result = pl.all[0]
+play_msg = `*Playing Music From Youtube*
+     
+*Title*: ${result.title}
+*Video ID*: ${result.videoId}
+*Durasi*: ${result.timestamp}
+*Di Buat*: ${result.ago}
+*Description*: ${result.description}`
+            const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+                    templateMessage: {
+                        hydratedTemplate: {
+                            hydratedContentText: play_msg,
+                            hydratedButtons: [{
+                                quickReplyButton: {
+                                    displayText: 'MP3',
+                                    id: `${prefix}ytmp3 ${result.url}`
+                                }
+                            },{
+                                quickReplyButton: {
+                                    displayText: 'MP4',
+                                    id: `${prefix}ytmp4 ${result.url}`
+                                }  
+                            }]
+                        }
+                    }
+                }), { userJid: m.chat, quoted: m })
+                frnky.relayMessage(m.chat, template.message, { messageId: template.key.id })
+             }
+             break
        // Menu
            case 'menu': case 'help': {
                 Textmenu = `Halo *${pushname}* 👋
@@ -337,6 +369,7 @@ Kecepatan Respon ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\
 *Download Menu*
 *${prefix}tiktok* <link tiktok>
 *${prefix}igdl* <link instagram>
+*${prefix}ytdl* <link Youtube/Judul>
 *${prefix}play* <judul>
 *${prefix}ytmp3* <link youtube>
 *${prefix}ytmp4* <link youtube>
