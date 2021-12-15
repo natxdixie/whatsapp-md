@@ -84,9 +84,9 @@ module.exports = frnky = async (frnky, m, chatUpdate) => {
 	        players2.push(t.player2)
 	        gilir.push(t.gilir)
 	        }
-	        const isTTT = isGroup ? idttt.includes(m.chat) : false
-	        isPlayer1 = isGroup ? players1.includes(m.sender) : false
-            isPlayer2 = isGroup ? players2.includes(m.sender) : false
+	        const isTTT = m.isGroup ? idttt.includes(m.chat) : false
+	        isPlayer1 = m.isGroup ? players1.includes(m.sender) : false
+            isPlayer2 = m.isGroup ? players2.includes(m.sender) : false
         // Group
         const groupMetadata = m.isGroup ? await frnky.groupMetadata(m.chat).catch(e => {}) : ''
         const groupName = m.isGroup ? groupMetadata.subject : ''
@@ -458,7 +458,7 @@ case 'public': {
             }
             break
 case 'deltt':
-if (!isGroup) throw mess.group
+if (!m.isGroup) throw mess.group
 if (!isTTT) throw 'Tidak Ada Permainan Di Grub Ini'
 naa = ky_ttt.filter(toek => !toek.id.includes(m.chat)) 
 ky_ttt = naa 
@@ -466,7 +466,7 @@ m.reply('Sukses Mereset Game')
 break
 case 'tictactoe':
 case 'ttt':
-if (!isGroup) throw mess.group
+if (!m.isGroup) throw mess.group
 if (args.length < 1) throw 'Tag Lawan Anda! '
 if (isTTT) throw 'Sedang Ada Permainan Di Grub Ini, Harap Tunggu'
 if (m.message.extendedTextMessage === undefined || m.message.extendedTextMessage === null) return m.reply('Tag target Lawan!')
