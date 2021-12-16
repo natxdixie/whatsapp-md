@@ -129,7 +129,7 @@ module.exports = frnky = async (frnky, m, chatUpdate) => {
 
         // Push Message To Console
         if (m.message) {
-            console.log(chalk.black(chalk.bgWhite('[ PESAN ]')), chalk.black(chalk.bgGreen(new Date)), chalk.black(chalk.bgBlue(budy || m.mtype)) + '\n' + chalk.magenta('=> Dari'), chalk.green(pushname), chalk.yellow(m.sender) + '\n' + chalk.blueBright('=> Di'), chalk.green(m.isGroup ? pushname : 'Private Chat', m.chat))
+            console.log(`[ PESAN ] From: ${m.chat} Nama: ${pushname} Pesan: ${budy} `)
         }
 
         switch(command) {
@@ -477,13 +477,14 @@ angka = ["0️⃣","1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","
 id = m.chat
 gilir = player2
 ky_ttt.push({player1,player2,id,angka,gilir})
-frnky.sendMessage(m.chat, 
-{ text : `*🎳 Memulai Game Tictactoe 🎲*
+ttt_pesn = `*🎳 Memulai Game Tictactoe 🎲*
 
 [@${player2.split('@')[0]}] Menantang anda untuk menjadi lawan Game🔥
 Ketik Y/N untuk menerima atau menolak permainan
 
-Ket : Ketik /deltt , Untuk Mereset Permainan!` }, {contextInfo: {mentionedJid: [player2]}})
+Ket : Ketik /deltt , Untuk Mereset Permainan!`
+
+frnky.sendMessage(m.chat, { text : ttt_pesn , quoted : m , contextInfo: {mentionedJid: [player2] }})
 break
 // Contact
 case 'owner': case 'creator': {
@@ -499,7 +500,7 @@ case 'owner': case 'creator': {
             break
             default:
           // Tictactoe game  
-            if (isTTT && isPlayer2){
+         if (isTTT && isPlayer2){
 if (budy.startsWith('Y')){
   tto = ky_ttt.filter(ghg => ghg.id.includes(m.chat))
   tty = tto[0]
@@ -515,14 +516,14 @@ Giliran = @${tty.player1.split('@')[0]}
    ${angka[1]}${angka[2]}${angka[3]}
    ${angka[4]}${angka[5]}${angka[6]}
    ${angka[7]}${angka[8]}${angka[9]}`
-  frnky.sendMessage(m.chat, { text : ucapan }, {quoted: m, contextInfo:{mentionedJid: [tty.player1,tty.player2]}})
+  frnky.sendMessage(m.chat, { text : ucapan , quoted: m, contextInfo:{mentionedJid: [tty.player1,tty.player2]}})
   }
 if (budy.startsWith('N')){
 tto = ky_ttt.filter(ghg => ghg.id.includes(m.chat))
 tty = tto[0]
 naa = ky_ttt.filter(toek => !toek.id.includes(m.chat)) 
 ky_ttt = naa
-frnky.sendMessage(m.chat, { text : `Yahh @${tty.player2.split('@')[0]} Menolak:(`},{quoted:m,contextInfo:{mentionedJid:[tty.player2]}})
+frnky.sendMessage(m.chat, { text : `Yahh @${tty.player2.split('@')[0]} Menolak:(`, quoted:m ,contextInfo: {mentionedJid:[tty.player2]}})
 }
 }
 
@@ -555,7 +556,7 @@ ucapan2 = `*🎳Result Game Tictactoe 🎲*
 *Hasil Akhir:*
 
 ${ttt}`
-frnky.sendMessage(m.chat, { text : ucapan1 }, {quoted:m, contextInfo:{mentionedJid: [tty.player1]}})
+frnky.sendMessage(m.chat, { text : ucapan1 , quoted:m, contextInfo:{mentionedJid: [tty.player1]}})
 naa = ky_ttt.filter(hhg => !hhg.id.includes(m.chat))
 return ky_ttt = naa
 }
@@ -591,7 +592,7 @@ Player1 @${tty.player1.split('@')[0]}=❌
 Giliran = @${tty.player2.split('@')[0]}
 
 ${ttt}`
- frnky.sendMessage(m.chat, { text : ucapan }, {quoted: m, contextInfo:{mentionedJid: [tty.player1,tty.player2]}})
+ frnky.sendMessage(m.chat, { text : ucapan , quoted: m, contextInfo:{mentionedJid: [tty.player1,tty.player2]}})
 }
 if (isTTT && isPlayer2){
 nuber = parseInt(budy)
@@ -621,7 +622,7 @@ ucapan2 = `*🎳 Game Tictactoe 🎲*
 *Hasil Akhir:*
 
 ${ttt}`
-frnky.sendMessage(m.chat, { text : ucapan1} , {quoted:m, contextInfo:{mentionedJid: [tty.player2]}})
+frnky.sendMessage(m.chat, { text : ucapan1 , quoted:m, contextInfo:{mentionedJid: [tty.player2]}})
 naa = ky_ttt.filter(hhg => !hhg.id.includes(m.chat))
 return ky_ttt = naa
 }
@@ -657,12 +658,11 @@ Player2 @${tty.player2.split('@')[0]}=❌
 Giliran = @${tty.player1.split('@')[0]}
 
 ${ttt}`
- frnky.sendMessage(m.chat, { text : ucapan }, {quoted: m, contextInfo:{mentionedJid: [tty.player1,tty.player2]}})
+ frnky.sendMessage(m.chat, { text : ucapan , quoted: m, contextInfo:{mentionedJid: [tty.player1,tty.player2]}})
 } else {
 	}
             
-            
-            
+           
                 if (budy.startsWith('=>')){
                 if (!isCreator) return
                 var konsol = budy.slice(2)
