@@ -12,7 +12,7 @@ const { smsg, isUrl, generateMessageTag } = require('./lib/myfunc')
 global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
 
 
-async function startfrnky() {
+async function startWhatsapp() {
     const frnky = makeWASocket({
         logger: pino({ level: 'silent' }),
         printQRInTerminal: true,
@@ -22,13 +22,13 @@ async function startfrnky() {
 
     frnky.ev.on('messages.upsert', async chatUpdate => {
         try {
-        mek = chatUpdate.messages[0]
-        if (!mek.message) return
-        mek.message = (Object.keys(mek.message)[0] === 'ephemeralMessage') ? mek.message.ephemeralMessage.message : mek.message
-        if (mek.key && mek.key.remoteJid === 'status@broadcast') return
-        if (!frnky.public && !mek.key.fromMe && chatUpdate.type === 'notify') return
-        if (mek.key.id.startsWith('BAE5') && mek.key.id.length === 16) return
-        m = smsg(frnky, mek)
+        Kyz = chatUpdate.messages[0]
+        if (!Kyz.message) return
+        Kyz.message = (Object.keys(Kyz.message)[0] === 'ephemeralMessage') ? Kyz.message.ephemeralMessage.message : Kyz.message
+        if (Kyz.key && Kyz.key.remoteJid === 'status@broadcast') return
+        if ( Kyz.key.fromMe && chatUpdate.type === 'notify') return
+        if (Kyz.key.id.startsWith('BAE5') && Kyz.key.id.length === 16) return
+        m = smsg(frnky, Kyz)
         require("./Frangky")(frnky, m, chatUpdate)
         } catch (err) {
             console.log(err)
@@ -41,24 +41,10 @@ async function startfrnky() {
             let metadata = await frnky.groupMetadata(anu.id)
             let participants = anu.participants
             for (let num of participants) {
-                // Get Profile Picture User
-                try {
-                    ppuser = await frnky.profilePictureUrl(num, 'image')
-                } catch {
-                    ppuser = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
-                }
-
-                // Get Profile Picture Group
-                try {
-                    ppgroup = await frnky.profilePictureUrl(anu.id, 'image')
-                } catch {
-                    ppgroup = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
-                }
-
                 if (anu.action == 'add') {
-                    frnky.sendMessage(anu.id, { image: { url: ppuser }, contextInfo: { mentionedJid: [num] }, caption: `Welcome To ${metadata.subject} @${num.split("@")[0]}` })
+                    frnky.sendMessage(anu.id, { text: `Welcome To ${metadata.subject} @${num.split("@")[0]}`,  contextInfo: { mentionedJid: [num] }})
                 } else if (anu.action == 'remove') {
-                    frnky.sendMessage(anu.id, { image: { url: ppuser }, contextInfo: { mentionedJid: [num] }, caption: `@${num.split("@")[0]} Leaving To ${metadata.subject}` })
+                    frnky.sendMessage(anu.id, { text : `@${num.split("@")[0]} Leaving To ${metadata.subject}` , contextInfo: { mentionedJid: [num] }})
                 }
             }
         } catch (err) {
@@ -66,8 +52,6 @@ async function startfrnky() {
         }
     })
 	
-    // Setting
-    frnky.public = true
 
     frnky.ev.on('connection.update', async (update) => {
         const { connection, lastDisconnect } = update
@@ -290,7 +274,7 @@ async function startfrnky() {
     return frnky
 }
 
-startfrnky()
+startWhatsapp()
 
 
 let file = require.resolve(__filename)
