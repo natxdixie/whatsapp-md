@@ -49,6 +49,7 @@ const axios = require('axios')
 const { fromBuffer } = require('file-type')
 const path = require('path')
 const os = require('os')
+const axios = require('axios')
 const yts = require('yt-search')
 const speed = require('performance-now')
 const { igDL } = require('./lib/igdl')
@@ -312,13 +313,13 @@ Kecepatan Respon ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\
           if (!text) throw 'Masukkan Link Youtube!'
           m.reply(mess.wait)
           anu = await ytMp3(text)
-          frnky.sendMessage(m.chat, { audio: getBuffer(anu.result)}, { quoted: m })
+          frnky.sendMessage(m.chat, { audio: { url : anu.result }}, { quoted: m })
           }
           break
           case 'ytmp4': {
           if (!text) throw 'Masukkan Link Youtube!'
           m.reply(mess.wait)
-          anu = await ytMp3(text)
+          anu = await ytMp4(text)
           frnky.sendMessage(m.chat, { video: await getBuffer(anu.result), caption:'Nih'}, { quoted: m })
           }
           break
