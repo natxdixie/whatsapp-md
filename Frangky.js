@@ -312,28 +312,28 @@ Kecepatan Respon ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\
           if (!text) throw 'Masukkan Link Youtube!'
           m.reply(mess.wait)
           anu = await ytMp3(text)
-          frnky.sendMessage(m.chat, { audio: { url: anu.result }}, { quoted: m })
+          frnky.sendMessage(m.chat, { audio: await getBuffer(anu.result)}, { quoted: m })
           }
           break
           case 'ytmp4': {
           if (!text) throw 'Masukkan Link Youtube!'
           m.reply(mess.wait)
           anu = await ytMp3(text)
-          frnky.sendMessage(m.chat, { video: { url: anu.result } , caption:'Nih'}, { quoted: m })
+          frnky.sendMessage(m.chat, { video: await getBuffer(anu.result), caption:'Nih'}, { quoted: m })
           }
           break
           case 'tiktok': case 'tiktokdl': case 'tt': {
           if (!text) throw 'Masukkan Link Tiktok!'
           m.reply(mess.wait)
           anu = await Tiktokdl(text)
-          frnky.sendMessage(m.chat, { video: { url: anu.nowatermark }, caption: 'Nih'}, { quoted: m })
+          frnky.sendMessage(m.chat, { video: await getBuffer(anu.nowatermark) , caption: 'Nih'}, { quoted: m })
           }
           break
           case 'instagram': case 'igdl': case 'ig': {
           if (!text) throw 'Masukkan Link Instagram!'
           m.reply(mess.wait)
           anu = await igDL(text)
-          frnky.sendMessage(m.chat, { video: { url: anu.result.link }, caption: 'Nih'}, { quoted: m })
+          frnky.sendMessage(m.chat, { video: await getBuffer(anu.result.link) , caption: 'Nih'}, { quoted: m })
           }
           break
         case 'play': case 'ytdl': {
