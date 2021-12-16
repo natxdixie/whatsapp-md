@@ -393,8 +393,12 @@ play_msg = `*Playing Music From Youtube*
 *${prefix}chat* <option>
 *${prefix}linkgc*
 *${prefix}setname*
-*${prefix}promote* @628xxx
-*${prefix}demote* @628xx
+*${prefix}promote* <@628xx/@tag>
+*${prefix}demote* <@628x/@tag>
+
+*Game Menu*
+*${prefix}tictactoe* <@tag>
+*${prefix}deltt*
 
 *Tools Menu*
 *${prefix}delete* <reply pesan>
@@ -446,7 +450,7 @@ case 'eval': {
 case 'public': {
                 if (!isCreator) throw mess.owner
                 frnky.public = true
-                m.reply('Sukse Change To Public Usage')
+                m.reply('Sukses Change To Public Usage')
             }
             break
             case 'self': {
@@ -459,7 +463,7 @@ case 'deltt':
 if (!m.isGroup) throw mess.group
 if (!isTTT) throw 'Tidak Ada Permainan Di Grub Ini'
 naa = ky_ttt.filter(toek => !toek.id.includes(m.chat)) 
-ky_ttt = naa 
+ky_ttt = naa
 m.reply('Sukses Mereset Game')
 break
 case 'tictactoe':
