@@ -57,6 +57,7 @@ const { performance } = require('perf_hooks')
 
 module.exports = frnky = async (frnky, m, chatUpdate) => {
     try {
+        if (m.key.fromMe) return
         var body = (m.mtype === 'conversation') ? m.message.conversation : (m.mtype == 'imageMessage') ? m.message.imageMessage.caption : (m.mtype == 'videoMessage') ? m.message.videoMessage.caption : (m.mtype == 'extendedTextMessage') ? m.message.extendedTextMessage.text : (m.mtype == 'buttonsResponseMessage') ? m.message.buttonsResponseMessage.selectedButtonId : (m.mtype == 'listResponseMessage') ? m.message.listResponseMessage.singleSelectReply.selectedRowId : (m.mtype == 'templateButtonReplyMessage') ? m.message.templateButtonReplyMessage.selectedId : (m.mtype === 'messageContextInfo') ? m.message.buttonsResponseMessage.selectedButtonId : ''
         var budy = (typeof m.text == 'string' ? m.text : '')
         const type = Object.keys(m.message)[0]
@@ -120,10 +121,6 @@ module.exports = frnky = async (frnky, m, chatUpdate) => {
             }
         })
 
-        // Public & Self
-        if (!frnky.public) {
-            if (!m.key.fromMe) return
-        }
 
         // Push Message To Console
         if (m.message) {
