@@ -312,14 +312,14 @@ Kecepatan Respon ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\
           if (!text) throw 'Masukkan Link Youtube!'
           m.reply(mess.wait)
           anu = await ytMp3(text)
-          frnky.sendMessage(m.chat, { audio: { url: anu.dl_link }}, { quoted: m })
+          frnky.sendMessage(m.chat, { audio: { url: anu.result }}, { quoted: m })
           }
           break
           case 'ytmp4': {
           if (!text) throw 'Masukkan Link Youtube!'
           m.reply(mess.wait)
           anu = await ytMp3(text)
-          frnky.sendMessage(m.chat, { video: { url: anu.dl_link } , caption:'Nih'}, { quoted: m })
+          frnky.sendMessage(m.chat, { video: { url: anu.result } , caption:'Nih'}, { quoted: m })
           }
           break
           case 'tiktok': case 'tiktokdl': case 'tt': {
